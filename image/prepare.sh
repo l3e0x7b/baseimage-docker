@@ -10,10 +10,17 @@ export INITRD=no
 mkdir -p /etc/container_environment
 echo -n no > /etc/container_environment/INITRD
 
-## Enable Ubuntu Universe, Multiverse, and deb-src for main.
-sed -i 's/^#\s*\(deb.*main restricted\)$/\1/g' /etc/apt/sources.list
-sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
-sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
+cat <<-EOF > /etc/apt/sources.list
+deb http://mirrors.ustc.edu.cn/debian/ buster main contrib non-free
+deb-src http://mirrors.ustc.edu.cn/debian/ buster main contrib non-free
+deb http://mirrors.ustc.edu.cn/debian/ buster-updates main contrib non-free
+deb-src http://mirrors.ustc.edu.cn/debian/ buster-updates main contrib non-free
+#deb http://mirrors.ustc.edu.cn/debian/ buster-backports main contrib non-free
+#deb-src http://mirrors.ustc.edu.cn/debian/ buster-backports main contrib non-free
+deb http://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free
+deb-src http://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free
+EOF
+
 apt-get update
 
 ## Fix some issues with APT packages.
