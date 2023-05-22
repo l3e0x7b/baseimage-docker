@@ -1,5 +1,7 @@
 # A minimal Debian base image modified for Docker-friendliness
 
+Optimized for users in mainland China
+
 <a name="conclusion"></a>
 ## Conclusion
 
