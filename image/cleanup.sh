@@ -6,7 +6,7 @@ set -x
 apt-get clean
 find /bd_build/ -not \( -name 'bd_build' -or -name 'buildconfig' -or -name 'cleanup.sh' \) -delete
 rm -rf /tmp/* /var/tmp/*
-rm -rf /var/lib/apt/lists/*
+rm -rf /var/lib/apt/lists/* /var/log/apt/* /var/log/dpkg.log
 
 # clean up python bytecode
 find / -mount -name *.pyc -delete
